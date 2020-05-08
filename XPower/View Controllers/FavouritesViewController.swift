@@ -14,7 +14,7 @@ import UIKit
 class FavouritesViewController: UIViewController {
  var client:XpowerDataClient?
     @IBOutlet weak var favouriteDeedsTableview: UITableView!
-    var favTaskList:TaskList?
+    var favTaskList:TasksList?
     var noDataView:UIView = UIView()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class FavouritesViewController: UIViewController {
 extension FavouritesViewController:UITableViewDataSource,UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       let cnt = favTaskList?.tasksList?.count ?? 0
+        let cnt = favTaskList?.tasksList?.count ?? 0
         if cnt==0
         {
             tableView.backgroundView = noDataView

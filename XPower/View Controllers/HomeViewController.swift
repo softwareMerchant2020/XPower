@@ -22,7 +22,7 @@ class HomeViewController: XpowerViewController {
         super.viewDidLoad()
         self.title = "Home"
         self.backgroundImage = "IMG_0268.jpg"
-        loadData()
+        //loadData()
         
     }
     func loadData() {

@@ -12,6 +12,8 @@ import UIKit
 let rest = RestManager()
 
 struct XpowerDataClient {
+
+    let decoder = JSONDecoder()
     func loginWithUsernameAndPassword(paramterDic:Dictionary<String,Any>, completionHandler: @escaping (UserInfo? , loginFailed?)->()) {
         var jsonData:UserInfo?
         guard let url = URL(string: BASE_URL + USER_SERVICE_URL + AUTHENTICATION_PATH) else { return }
@@ -19,17 +21,15 @@ struct XpowerDataClient {
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
                 if let data = results.data {
-               let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                do {
-                    jsonData = try decoder.decode(UserInfo.self, from: data)
-                     completionHandler(jsonData, nil)
-                } catch  {
                     do {
-                       let loginFailData = try decoder.decode(loginFailed.self, from: data)
-                        completionHandler(nil,loginFailData)
+                        jsonData = try self.decoder.decode(UserInfo.self, from: data)
+                        completionHandler(jsonData, nil)
+                    } catch  {
+                        do {
+                            let loginFailData = try self.decoder.decode(loginFailed.self, from: data)
+                            completionHandler(nil,loginFailData)
                         } catch  {
-                          print("error decoding dta:\(error)")
+                            print("error decoding dta:\(error)")
                         }
                     }
                 }
@@ -38,18 +38,18 @@ struct XpowerDataClient {
     }
     func signUpUser(parameters:Dictionary<String,Any>, completionHandler: @escaping (String)->()) {
         guard let url = URL(string: BASE_URL + USER_SERVICE_URL + CREATE_ACCOUNT)
-               else
-              {
-               return
+            else
+        {
+            return
         }
         rest.httpBodyParameters.addAllBodyParameters(dic: parameters)
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
-                let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String , Any>
-                  completionHandler(jsonData["Result"] as! String)
-                 }
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.result)
+                }
             }
         }
     }
@@ -60,9 +60,9 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
-                               let responseData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String , String>
-                               completionHandler(responseData["Result"] ?? "")
-                               }
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.result)
+                }
             }
         }
     }
@@ -72,32 +72,27 @@ struct XpowerDataClient {
         rest.makeRequest(toURL: url, withHttpMethod: .get) { (results) in
             if results.response?.httpStatusCode == 200 {
                 if let data = results.data {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                do {
-                pointsData = try decoder.decode(Array<Points>.self, from: data)
-                completionHandler(pointsData!)
-                } catch  {
-                print("error decoding dta:\(error)")
-                }
+                    do {
+                        pointsData = try self.decoder.decode(Array<Points>.self, from: data)
+                        completionHandler(pointsData!)
+                    } catch  {
+                        print("error decoding dta:\(error)")
+                    }
                 }
             }
         }
     }
     
-    func getFavouriteDeeds(completionHandler: @escaping (TaskList) -> ()) {
-        var favTasks:TaskList?
+    func getFavouriteDeeds(completionHandler: @escaping (TasksList) -> ()) {
+        var favTasks:TasksList?
         
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_FAVORITE_TASK)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: USER_NAME)
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_FAVORITE_TASK + "?Username=" + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        favTasks = try decoder.decode(TaskList.self, from: data)
+                        favTasks = try self.decoder.decode(TasksList.self, from: data)
                         completionHandler(favTasks!)
                         
                     } catch  {
@@ -110,18 +105,18 @@ struct XpowerDataClient {
     func addDeed(deed:String, completionHandler :  @escaping (String)->()) {
         let date:Date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let dateString:String = dateFormatter.string(from: date)
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + ADD_DEEDS)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "user")
-        rest.httpBodyParameters.add(value: deed, forKey: "deed")
-        rest.httpBodyParameters.add(value: dateString, forKey: "date")
+        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "UserName")
+        rest.httpBodyParameters.add(value: deed, forKey: "Deed")
+        rest.httpBodyParameters.add(value: dateString, forKey: "Date")
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String , Any>
-                    completionHandler(jsonData["Result"] as! String)
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.result)
                 }
             }
         }
@@ -136,9 +131,8 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
-                  let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String , Any>
-                    completionHandler(jsonData["Result"] as! String)
-                    
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.result)
                 }
             }
         })
@@ -146,17 +140,14 @@ struct XpowerDataClient {
     func getRecentDeeds(completionHandler: @escaping ([RecentDeed]) -> ()) {
         var recentDeeds:[RecentDeed]?
         
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + RECENT_DEEDS)!
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + RECENT_DEEDS + "?Username=" + Utilities.currentUserName())!
         rest.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        recentDeeds = try decoder.decode([RecentDeed].self, from: data)
+                        recentDeeds = try self.decoder.decode([RecentDeed].self, from: data)
                         completionHandler(recentDeeds!)
                         
                     } catch  {
@@ -168,16 +159,13 @@ struct XpowerDataClient {
     }
     
     func getSchoolPoints(schoolName:String, completionHandler : @escaping (SchoolPoints) -> ()) {
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS)!
-        rest.httpBodyParameters.add(value: schoolName, forKey: SCHOOL_NAME)
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + schoolName)!
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        let schPoints:SchoolPoints = try decoder.decode(SchoolPoints.self, from: data)
+                        let schPoints:SchoolPoints = try self.decoder.decode(SchoolPoints.self, from: data)
                         completionHandler(schPoints)
                     } catch  {
                         print("error decoding dta:\(error)")
@@ -191,10 +179,8 @@ struct XpowerDataClient {
         rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
         rest.makePostRequest(toURL: url) { (results, success) in
             if let data = results.data {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    let friendList:FriendList = try decoder.decode(FriendList.self, from: data)
+                    let friendList:FriendList = try self.decoder.decode(FriendList.self, from: data)
                     completionHandler(friendList)
                 } catch  {
                     print("error decoding dta:\(error)")
@@ -209,10 +195,8 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        let friendReqs:FriendRequests = try decoder.decode(FriendRequests.self, from: data)
+                        let friendReqs:FriendRequests = try self.decoder.decode(FriendRequests.self, from: data)
                         completionHandler(friendReqs)
                     } catch  {
                         print("error decoding dta:\(error)")
@@ -232,9 +216,9 @@ struct XpowerDataClient {
                 if let data = results.data {
                     let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
                     completionHandler(jsonData["Result"] ?? "")
-                   }
-                   }
-               }
+                }
+            }
+        }
     }
     func addFriendRequest(receiverName:String, completionHandler :  @escaping (String)->()) {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + ADD_FRIEND_REQUEST)!
@@ -246,14 +230,14 @@ struct XpowerDataClient {
                 if let data = results.data {
                     let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
                     completionHandler(jsonData["Result"] ?? "")
-                   }
-                   }
-               }
+                }
+            }
+        }
         
     }
     func changePasswordWith(newPassword:String, completionHandler: @escaping (String)->()) {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + CHANGE_PASSWORD)!
-
+        
         rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
         rest.httpBodyParameters.add(value: newPassword, forKey: PASSWORD)
         rest.makePostRequest(toURL: url) { (results, success) in
@@ -261,28 +245,28 @@ struct XpowerDataClient {
                 if let data = results.data {
                     let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
                     completionHandler(jsonData["Result"] ?? "")
-                   }
-                   }
-               }
+                }
+            }
+        }
     }
     func toggleTouchId(touchId:Bool, completionHandler: @escaping (String) -> ())  {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + TOGGLE_TOUCH_ID)!
-            rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
-            rest.httpBodyParameters.add(value: touchId, forKey: TOUCH_ID_ON)
+        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
+        rest.httpBodyParameters.add(value: touchId, forKey: TOUCH_ID_ON)
         
-            rest.makePostRequest(toURL: url) { (results, success) in
-                if success {
-                    if let data = results.data {
-                        let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                        completionHandler(jsonData["Result"] ?? "")
-                       }
+        rest.makePostRequest(toURL: url) { (results, success) in
+            if success {
+                if let data = results.data {
+                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
+                    completionHandler(jsonData["Result"] ?? "")
                 }
             }
+        }
     }
     func getMessagesFrom(receiverName:String, completionHandler: @escaping (Conversation) -> ()) {
-//        let date:Date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        //        let date:Date = Date()
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let dateString:String = "1970/01/01 00:00:00"
         let url = URL(string: BASE_URL + CHAT_SERVICE_URL + GET_MESSAGES)!
         rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
@@ -291,13 +275,12 @@ struct XpowerDataClient {
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
                 if let data = results.data {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                do {
-                        let conversationMsg:Conversation = try decoder.decode(Conversation.self, from: data)
-                           completionHandler(conversationMsg)
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    do {
+                        let conversationMsg:Conversation = try self.decoder.decode(Conversation.self, from: data)
+                        completionHandler(conversationMsg)
                     } catch  {
-                           print("error decoding dta:\(error)")
+                        print("error decoding dta:\(error)")
                     }
                 }
             }
@@ -318,13 +301,13 @@ struct XpowerDataClient {
             if success {
                 if let data = results.data {
                     let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                        completionHandler(jsonData["Result"] ?? "")
-                    }
+                    completionHandler(jsonData["Result"] ?? "")
+                }
             }
         }
     }
     func getUserProgress(completionHandler: @escaping (ProgressPoints) ->()) {
-       
+        
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_USER_PROGRESS)!
         rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
         rest.makePostRequest(toURL: url) { (results, success) in
@@ -338,58 +321,60 @@ struct XpowerDataClient {
         }
     }
     func modelProgressPoints(dic:Dictionary<String,Any>) -> ProgressPoints {
-        var progress:ProgressPoints?
-        var months:[Month] = [Month]()
+        //var progress:ProgressPoints?
+        //var months:[Month] = [Month]()
         
-        let month1:Month = Month(name: "Jan", progress: dic["Jan"] as! Int)
-        months.append(month1 )
-        
-        let month2:Month = Month(name: "Feb", progress: dic["Feb"] as! Int)
-        months.append(month2)
-        let month3:Month = Month(name: "Mar", progress: dic["Mar"] as! Int)
-        months.append(month3)
-        let month4:Month = Month(name: "Apr", progress: dic["Apr"] as! Int)
-        months.append(month4)
-        let month5:Month = Month(name: "May", progress: dic["May"] as! Int)
-       months.append(month5)
-        let month6:Month = Month(name: "Jun", progress: dic["Jun"] as! Int)
-        months.append(month6)
-        let month7:Month = Month(name: "Jul", progress: dic["Jul"] as! Int)
-       months.append(month7)
-        let month8:Month = Month(name: "Aug", progress: dic["Aug"] as! Int)
-        months.append(month8)
-        let month9:Month = Month(name: "Sep", progress: dic["Sep"] as! Int)
-        months.append(month9)
-        let month10:Month = Month(name: "Oct", progress: dic["Oct"] as! Int)
-        months.append(month10)
-        let month11:Month = Month(name: "Nov", progress: dic["Nov"] as! Int)
-       months.append(month11)
-        let month12:Month = Month(name: "Dec", progress: dic["Dec"] as! Int)
-        months.append(month12)
-        progress = ProgressPoints(allMonths: months)
-        return progress!
+        //        let month1:Month = Month(name: "Jan", progress: dic["Jan"] as! Int)
+        //        months.append(month1 )
+        //
+        //        let month2:Month = Month(name: "Feb", progress: dic["Feb"] as! Int)
+        //        months.append(month2)
+        //        let month3:Month = Month(name: "Mar", progress: dic["Mar"] as! Int)
+        //        months.append(month3)
+        //        let month4:Month = Month(name: "Apr", progress: dic["Apr"] as! Int)
+        //        months.append(month4)
+        //        let month5:Month = Month(name: "May", progress: dic["May"] as! Int)
+        //       months.append(month5)
+        //        let month6:Month = Month(name: "Jun", progress: dic["Jun"] as! Int)
+        //        months.append(month6)
+        //        let month7:Month = Month(name: "Jul", progress: dic["Jul"] as! Int)
+        //       months.append(month7)
+        //        let month8:Month = Month(name: "Aug", progress: dic["Aug"] as! Int)
+        //        months.append(month8)
+        //        let month9:Month = Month(name: "Sep", progress: dic["Sep"] as! Int)
+        //        months.append(month9)
+        //        let month10:Month = Month(name: "Oct", progress: dic["Oct"] as! Int)
+        //        months.append(month10)
+        //        let month11:Month = Month(name: "Nov", progress: dic["Nov"] as! Int)
+        //       months.append(month11)
+        //        let month12:Month = Month(name: "Dec", progress: dic["Dec"] as! Int)
+        //        months.append(month12)
+        //        progress = ProgressPoints(allMonths: months)
+        return ProgressPoints()
     }
     func getUserDailyPoints(completionHandler: @escaping (Int) -> ()) {
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_DAILY_POINTS + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
-        if success {
+            if success {
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Int>
-                    completionHandler(jsonData["dailypoints"] ?? 0)
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let jsonData = try! self.decoder.decode(DailyPoints.self, from: data )
+                    completionHandler(jsonData.dailypoints)
                 }
+            }
         }
-    }
     }
     func getTotalSchoolPoints(completionHandler: @escaping (Int) -> ()) {
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_TOTAL_SCHOOL_POINTS + Utilities.currentUserSchoolName())!
         
         rest.makePostRequest(toURL: url) { (results, success) in
-                if success {
-                    if let data = results.data {
-                        let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Int>
-                        completionHandler(jsonData["totalpoints"] ?? 0)
-                       }
+            if success {
+                if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let jsonData = try! self.decoder.decode(SchoolPoints.self, from: data)
+                    completionHandler(jsonData.totalpoints)
                 }
+            }
         }
     }
 }

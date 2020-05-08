@@ -18,36 +18,40 @@ struct PointsList:Codable {
         pointsList = try values.decodeIfPresent([Points].self, forKey: .pointsList)
     }
 }
-struct TaskList: Codable {
+struct TasksList: Codable {
     let count: Int
-    let tasksList: [TasksList]?
+    let tasksList: [TaskList]?
     let username: String
 
     enum CodingKeys: String, CodingKey {
         case count = "Count"
-        case tasksList = "TasksList"
+        case tasksList = "TaskList"
         case username = "Username"
     }
 }
 
 // MARK: - TasksList
-struct TasksList: Codable {
-    let task: String
+struct TaskList: Codable {
+    let Task: String
 
     enum CodingKeys: String, CodingKey {
-        case task = "Task"
+        case Task = "Task"
     }
 }
 struct RecentDeed: Codable {
-    let date, deed: String
+    let Date, deed: String
 }
 struct SchoolPoints: Codable {
     let totalpoints: Int
 }
 
+struct DailyPoints: Codable {
+    let dailypoints:Int
+}
+
 // MARK: User PRogress points
 
-struct ProgressPoints {
+struct ProgressPoints{
     var allMonths: [Month]?
     
 }

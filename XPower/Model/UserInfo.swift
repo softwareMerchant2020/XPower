@@ -24,5 +24,8 @@ struct UserInfo: Codable {
 struct loginFailed: Codable {
     let result:String
     let reason:String
-    
 }
+struct ResultData: Codable{
+    let result:String
+}
+

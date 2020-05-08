@@ -48,8 +48,8 @@ class PointsTableViewCell: UITableViewCell {
     func setCellData(points:Points) {
         descriptionLabel.text = points.Description
     }
-    func setFavouriteTask(task:TasksList) {
-        descriptionLabel.text = task.task
+    func setFavouriteTask(task:TaskList) {
+        descriptionLabel.text = task.Task
         starButton.setBackgroundImage(UIImage.init(named: "favorites.png"), for: .normal)
     }
     func showAlertWithMessage(message:String) {
