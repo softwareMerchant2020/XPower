@@ -17,20 +17,18 @@ var client:XpowerDataClient?
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var schoolNameLabel: UILabel!
-     var imagePicker = UIImagePickerController()
+    var imagePicker:UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker = UIImagePickerController()
         let backgroundImage = UIImageView(frame: self.view.bounds)
         backgroundImage.image = UIImage(named: "IMG_0268.jpg")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
         backgroundImage.alpha = 0.5
         self.view.insertSubview(backgroundImage, at: 0)
         
-       
-        
         client = XpowerDataClient()
-        getUserImageIfAvailable()
     
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectUserImage))
         userImage.addGestureRecognizer(tapGesture)
@@ -69,28 +67,41 @@ var client:XpowerDataClient?
                 self.present(alert, animated: true, completion:nil)
             }}
             else {
-            signUpParameters = [USER_NAME:self.userNameField.text! , PASSWORD:self.passwordField.text! , EMAIL:self.emailField.text! , SCHOOL_NAME:schoolNameLabel.text! as Any , AVATAR :false , AVATAR_IMG_URL:"" , TOUCH_ID_ON:false]
+            signUpParameters = [USER_NAME:self.userNameField.text! , PASSWORD:self.passwordField.text! , EMAIL:self.emailField.text! , SCHOOL_NAME:schoolNameLabel.text! as Any , AVATAR :true , AVATAR_IMG_URL:"" , TOUCH_ID_ON:false]
             client?.signUpUser(parameters: signUpParameters!) { (result) in
+                
+                
                 let alert = UIAlertController(title: ACTION_SIGNUP, message:result , preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: ACTION_OK, style: UIAlertAction.Style.destructive, handler: nil))
-                OperationQueue.main.addOperation {
-                    self.present(alert, animated: true, completion:nil)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true) {
+                         if (result == "success") {
+                            self.goToLoginView(withUsername: self.userNameField.text!, password: self.passwordField.text!)
+                        }
+                    }
                 }
-                
             }
             }
         }
         
-    
+    func goToLoginView(withUsername username:String, password:String) {
+        self.dismiss(animated: true) {
+             self.navigationController?.popViewController(animated: true)
+                   let loginVC = self.navigationController?.viewControllers[0] as! LoginViewController
+                   print(loginVC)
+            loginVC.loginWithUsernameAndPassword(username: username, password: password)
+
+        }
+       
+    }
     @objc func selectUserImage()
     {
-        
         checkPermission {
-//            self.imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.delegate = self
             DispatchQueue.main.async {
-                 self.present(self.imagePicker, animated: true, completion: nil)
+                self.imagePicker.sourceType = .savedPhotosAlbum
+                self.imagePicker.delegate = self
+                self.imagePicker.allowsEditing = true
+                self.present(self.imagePicker, animated: true, completion: nil)
             }
            
         }
@@ -118,28 +129,21 @@ var client:XpowerDataClient?
         defaults.setValue(imageData, forKey: USER_IMG_AVATAR)
         
     }
-    func getUserImageIfAvailable() {
-        let defaults = UserDefaults.standard
-        if (defaults.data(forKey: USER_IMG_AVATAR) != nil) {
-            let userAvatar:UIImage = UIImage(data: defaults.data(forKey: USER_IMG_AVATAR)!)!
-            userImage.image = userAvatar
-        }
-        
-    }
 }
 extension SignUpViewController:UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate
 {
-   @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
          if let possibleImage = info[.editedImage] as? UIImage {
             userImage.image = possibleImage
            } else if let possibleImage = info[.originalImage] as? UIImage {
                userImage.image = possibleImage
-           } else {
-               return
            }
-         self.saveImage(userImage: self.userImage.image!)
-           dismiss(animated: true)
-        
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(picker)
+        dismiss(animated: true, completion: nil)
+
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

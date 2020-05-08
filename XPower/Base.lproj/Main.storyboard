@@ -11,7 +11,7 @@
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" userLabel="LoginViewController" customClass="LoginViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" userLabel="LoginViewController" customClass="LoginViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,7 +131,7 @@
         <!--SideMenuViewController-->
         <scene sceneID="6Qd-Sy-Cod">
             <objects>
-                <viewController storyboardIdentifier="SideMenuViewController" id="B5Z-RM-acG" userLabel="SideMenuViewController" customClass="SideMenuViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideMenuViewController" id="B5Z-RM-acG" userLabel="SideMenuViewController" customClass="SideMenuViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ECI-9e-mxg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,7 +212,7 @@
         <!--HomeViewController-->
         <scene sceneID="vVC-O9-9nI">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="PLN-Mw-5oo" userLabel="HomeViewController" customClass="HomeViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="PLN-Mw-5oo" userLabel="HomeViewController" customClass="HomeViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PTt-bz-rkr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,7 +227,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeViewCell" id="YAO-7Z-CXB" customClass="HomeCollectionViewCell" customModule="XPower" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeViewCell" id="YAO-7Z-CXB" customClass="HomeCollectionViewCell" customModule="EarthPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gWi-rU-nJQ">
@@ -283,7 +283,7 @@
         <!--ScoreViewController-->
         <scene sceneID="4Y1-tc-3ce">
             <objects>
-                <viewController storyboardIdentifier="ScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dO7-1K-a5g" userLabel="ScoreViewController" customClass="ScoreViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dO7-1K-a5g" userLabel="ScoreViewController" customClass="ScoreViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7B-Oz-8lX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -336,7 +336,7 @@
         <!--FriendListViewController-->
         <scene sceneID="Tmp-bb-fPh">
             <objects>
-                <viewController storyboardIdentifier="FriendListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ge4-mn-eVb" userLabel="FriendListViewController" customClass="FriendListViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ge4-mn-eVb" userLabel="FriendListViewController" customClass="FriendListViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kkF-CS-GAv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -391,7 +391,7 @@
         <!--ChatViewController-->
         <scene sceneID="CGo-kg-9pW">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k11-g9-wfk" userLabel="ChatViewController" customClass="ChatViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="k11-g9-wfk" userLabel="ChatViewController" customClass="ChatViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xMW-TX-FON">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -462,20 +462,16 @@
         <!--SignUpViewController-->
         <scene sceneID="nik-dc-iwG">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="qBu-C8-Cpq" userLabel="SignUpViewController" customClass="SignUpViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qBu-C8-Cpq" userLabel="SignUpViewController" customClass="SignUpViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vb6-6A-y3K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="cfi-6f-isV">
-                                <rect key="frame" x="60" y="87.999999999999972" width="294" height="495.33333333333326"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="wsk-ib-sE9">
+                                <rect key="frame" x="40" y="284" width="334" height="367"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="0nN-8E-N9E">
-                                        <rect key="frame" x="105.33333333333334" y="0.0" width="83.333333333333343" height="83.333333333333329"/>
-                                        <color key="tintColor" red="0.37254901959999998" green="0.37647058820000001" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zP-uA-KiL">
-                                        <rect key="frame" x="99.666666666666657" y="118.33333333333334" width="95" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="30"/>
                                         <state key="normal" title="Select School">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -484,42 +480,38 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7hM-Av-RTH">
-                                        <rect key="frame" x="0.0" y="183.33333333333331" width="294" height="34"/>
+                                        <rect key="frame" x="0.0" y="63" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Co-Ci-swD">
-                                        <rect key="frame" x="0.0" y="252.33333333333331" width="294" height="34"/>
+                                        <rect key="frame" x="0.0" y="130" width="334" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-7U-h3R">
-                                                <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="215.66666666666666" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@XXXXX.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Fm-JaY">
-                                                <rect key="frame" x="185.66666666666666" y="0.0" width="108.33333333333334" height="34"/>
+                                                <rect key="frame" x="225.66666666666671" y="0.0" width="108.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="yq3-Fm-JaY" firstAttribute="leading" secondItem="cdz-7U-h3R" secondAttribute="trailing" constant="10" id="aGz-AK-szr"/>
-                                            <constraint firstItem="cdz-7U-h3R" firstAttribute="leading" secondItem="4Co-Ci-swD" secondAttribute="leading" id="jT9-nI-4iM"/>
-                                        </constraints>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nwO-Pl-z9J">
-                                        <rect key="frame" x="0.0" y="321.33333333333331" width="294" height="34"/>
+                                        <rect key="frame" x="0.0" y="197" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GeO-f7-J0i">
-                                        <rect key="frame" x="0.0" y="390.33333333333331" width="294" height="34"/>
+                                        <rect key="frame" x="0.0" y="264" width="334" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zk-kC-8Oz">
-                                        <rect key="frame" x="107" y="459.33333333333337" width="80" height="36"/>
+                                        <rect key="frame" x="0.0" y="331" width="334" height="36"/>
                                         <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="21"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -529,23 +521,25 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="4Co-Ci-swD" secondAttribute="trailing" id="714-2b-NaQ"/>
-                                    <constraint firstItem="nwO-Pl-z9J" firstAttribute="leading" secondItem="cfi-6f-isV" secondAttribute="leading" id="HZh-du-XyX"/>
-                                    <constraint firstItem="GeO-f7-J0i" firstAttribute="leading" secondItem="cfi-6f-isV" secondAttribute="leading" id="PxM-iL-Q0U"/>
-                                    <constraint firstAttribute="trailing" secondItem="7hM-Av-RTH" secondAttribute="trailing" id="Vv3-MA-TNY"/>
-                                    <constraint firstAttribute="trailing" secondItem="nwO-Pl-z9J" secondAttribute="trailing" id="Xmj-Jv-u0m"/>
-                                    <constraint firstAttribute="trailing" secondItem="GeO-f7-J0i" secondAttribute="trailing" id="h1z-2q-pnb"/>
-                                    <constraint firstItem="7hM-Av-RTH" firstAttribute="leading" secondItem="cfi-6f-isV" secondAttribute="leading" id="kFF-B2-dnu"/>
-                                    <constraint firstItem="4Co-Ci-swD" firstAttribute="leading" secondItem="cfi-6f-isV" secondAttribute="leading" id="vhB-yh-Vfl"/>
-                                </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="0nN-8E-N9E">
+                                <rect key="frame" x="132" y="89" width="150" height="150"/>
+                                <color key="tintColor" red="0.37254901959999998" green="0.37647058820000001" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="3jr-bD-pvI"/>
+                                    <constraint firstAttribute="width" constant="150" id="kTj-3i-Ojs"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cfi-6f-isV" firstAttribute="top" secondItem="X3e-qB-cfn" secondAttribute="top" constant="44" id="2If-qH-N2l"/>
-                            <constraint firstItem="X3e-qB-cfn" firstAttribute="trailing" secondItem="cfi-6f-isV" secondAttribute="trailing" constant="60" id="JpJ-EU-zfC"/>
-                            <constraint firstItem="cfi-6f-isV" firstAttribute="leading" secondItem="X3e-qB-cfn" secondAttribute="leading" constant="60" id="vPO-va-EZE"/>
+                            <constraint firstItem="0nN-8E-N9E" firstAttribute="width" secondItem="Vb6-6A-y3K" secondAttribute="width" multiplier="0.362319" id="4BS-v6-dxW"/>
+                            <constraint firstItem="wsk-ib-sE9" firstAttribute="leading" secondItem="Vb6-6A-y3K" secondAttribute="leadingMargin" constant="20" id="BJC-82-cL5"/>
+                            <constraint firstItem="wsk-ib-sE9" firstAttribute="top" secondItem="0nN-8E-N9E" secondAttribute="bottom" constant="45" id="KVp-9D-tOs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wsk-ib-sE9" secondAttribute="trailing" constant="20" id="Ue2-p5-oQ1"/>
+                            <constraint firstItem="0nN-8E-N9E" firstAttribute="top" secondItem="X3e-qB-cfn" secondAttribute="top" constant="45" id="eZq-Wp-gzl"/>
+                            <constraint firstItem="0nN-8E-N9E" firstAttribute="height" secondItem="Vb6-6A-y3K" secondAttribute="height" multiplier="0.167411" id="uEv-hg-afU"/>
+                            <constraint firstItem="0nN-8E-N9E" firstAttribute="centerX" secondItem="Vb6-6A-y3K" secondAttribute="centerX" id="uS7-GW-o85"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X3e-qB-cfn"/>
                     </view>
@@ -566,7 +560,7 @@
         <!--FavouritesViewController-->
         <scene sceneID="Z0H-PJ-2Ty">
             <objects>
-                <viewController storyboardIdentifier="FavouritesViewController" id="Uq5-Ol-T2g" userLabel="FavouritesViewController" customClass="FavouritesViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavouritesViewController" id="Uq5-Ol-T2g" userLabel="FavouritesViewController" customClass="FavouritesViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r4g-VW-5Hv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -597,7 +591,7 @@
         <!--RecentDeedsViewController-->
         <scene sceneID="n2m-3H-DzE">
             <objects>
-                <viewController storyboardIdentifier="RecentDeedsViewController" id="hoo-j8-ePW" userLabel="RecentDeedsViewController" customClass="RecentDeedsViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecentDeedsViewController" id="hoo-j8-ePW" userLabel="RecentDeedsViewController" customClass="RecentDeedsViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsD-12-15A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -628,7 +622,7 @@
         <!--SettingsViewController-->
         <scene sceneID="hSx-X6-vK0">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vde-4X-5KZ" userLabel="SettingsViewController" customClass="SettingsViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vde-4X-5KZ" userLabel="SettingsViewController" customClass="SettingsViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aZ6-ez-Hv8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,7 +652,7 @@
         <!--ChangePwdViewController-->
         <scene sceneID="rtv-yH-zIC">
             <objects>
-                <viewController storyboardIdentifier="ChangePwdViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AtL-Bf-IdM" userLabel="ChangePwdViewController" customClass="ChangePwdViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePwdViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AtL-Bf-IdM" userLabel="ChangePwdViewController" customClass="ChangePwdViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Et7-Nm-yV0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -715,7 +709,7 @@
         <!--PointsViewController-->
         <scene sceneID="ASC-6i-ZAO">
             <objects>
-                <viewController storyboardIdentifier="PointsViewController" id="jLb-dF-ROD" userLabel="PointsViewController" customClass="PointsViewController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PointsViewController" id="jLb-dF-ROD" userLabel="PointsViewController" customClass="PointsViewController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="khZ-8B-Y9f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -766,7 +760,7 @@
         <!--PointsTabBarController-->
         <scene sceneID="WcZ-r3-Gb4">
             <objects>
-                <tabBarController storyboardIdentifier="PointsTabBarController" id="1uK-UU-ukq" userLabel="PointsTabBarController" customClass="PointsTabBarController" customModule="XPower" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PointsTabBarController" id="1uK-UU-ukq" userLabel="PointsTabBarController" customClass="PointsTabBarController" customModule="EarthPower" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="G0z-TN-dj4">
                         <barButtonItem key="leftBarButtonItem" image="ellipsis" catalog="system" id="UGQ-MQ-KWB">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

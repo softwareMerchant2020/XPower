@@ -26,6 +26,10 @@ class LoginViewController: UIViewController {
         userNameField.delegate = self
         passwordField.delegate = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+        super.viewWillAppear(animated)
+    }
     @IBAction func forgotPasswordClicked(_ sender: Any) {
         
         let alert = UIAlertController(title: FORGET_PASSWORD, message: nil, preferredStyle: .alert)
@@ -45,6 +49,7 @@ class LoginViewController: UIViewController {
         
        }
        @IBAction func signUpButtonClicked(_ sender: Any) {
+//        self.performSegue(withIdentifier: "signupclicked", sender: self)
         let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
         self.navigationController?.pushViewController(signUpVC, animated: true)
        }

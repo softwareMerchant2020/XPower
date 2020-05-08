@@ -11,14 +11,13 @@ target 'XPower' do
     inherit! :search_paths
     # Pods for testing
   end
+  
+pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/AdMob'
+  pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
 
 end
-# add pods for desired Firebase products
-# https://firebase.google.com/docs/ios/setup#available-pods
-pod 'Firebase/Firestore'
-pod 'Firebase/Messaging'
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/AdMob'
-pod 'Firebase/Database'
-pod 'Firebase/Storage'

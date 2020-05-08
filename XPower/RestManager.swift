@@ -70,7 +70,7 @@ class RestManager {
     {
         self.requestHttpHeaders.add(value: "application/json", forKey: "Content-Type")
         self.makeRequest(toURL: url, withHttpMethod: .post) { (result) in
-            if (result.response?.httpStatusCode==200)
+            if((200...499) ~= result.response!.httpStatusCode)
             {
                 completionHandler(result,true)
                 

@@ -370,20 +370,18 @@ struct XpowerDataClient {
         return progress!
     }
     func getUserDailyPoints(completionHandler: @escaping (Int) -> ()) {
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_DAILY_POINTS)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_DAILY_POINTS + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
         if success {
                 if let data = results.data {
                     let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Int>
-                    completionHandler(jsonData["totalpoints"] ?? 0)
+                    completionHandler(jsonData["dailypoints"] ?? 0)
                 }
         }
     }
     }
     func getTotalSchoolPoints(completionHandler: @escaping (Int) -> ()) {
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_TOTAL_SCHOOL_POINTS)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserSchoolName(), forKey: "SchoolName")
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_TOTAL_SCHOOL_POINTS + Utilities.currentUserSchoolName())!
         
         rest.makePostRequest(toURL: url) { (results, success) in
                 if success {

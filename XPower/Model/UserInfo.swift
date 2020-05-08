@@ -9,7 +9,6 @@
 import Foundation
 struct UserInfo: Codable {
     let username, password, email, schoolName: String
-    let avatar: Bool
     let avatarimageurl: String
     let touchIDOn: Bool
 
@@ -18,7 +17,6 @@ struct UserInfo: Codable {
         case password = "Password"
         case email = "Email"
         case schoolName = "SchoolName"
-        case avatar = "Avatar"
         case avatarimageurl = "Avatarimageurl"
         case touchIDOn = "TouchIdOn"
     }
