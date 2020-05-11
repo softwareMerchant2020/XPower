@@ -13,7 +13,7 @@ class HomeViewController: XpowerViewController {
     var progresspoints:ProgressPoints?
     @IBOutlet weak var homeCollectionView: UICollectionView!
     private let itemsPerRow: CGFloat = 3
-    private let sectionInsets =  UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    private let sectionInsets =  UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
 
     @IBOutlet weak var totalPointsLabel: UILabel!
     @IBOutlet weak var dailyPointsLabel: UILabel!
@@ -22,7 +22,7 @@ class HomeViewController: XpowerViewController {
         super.viewDidLoad()
         self.title = "Home"
         self.backgroundImage = "IMG_0268.jpg"
-        //loadData()
+        loadData()
         
     }
     func loadData() {
@@ -63,17 +63,18 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView
           .dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeCollectionViewCell
-        cell.setCellData(monthPoint: (progresspoints?.allMonths?[indexPath.row])!)
+        cell.setCellData(monthPoint: (progresspoints?.allMonths![indexPath.row])!)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
       //2
-      let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-      let availableWidth = homeCollectionView.frame.width - paddingSpace
+      let paddingSpace = sectionInsets.right * (itemsPerRow + 1)
+      let availableWidth = homeCollectionView.bounds.width - paddingSpace
       let widthPerItem = availableWidth / itemsPerRow
-      return CGSize(width: widthPerItem, height: widthPerItem+15)
+        homeCollectionView.layoutIfNeeded()
+      return CGSize(width: widthPerItem-15, height: widthPerItem)
     }
     
     //3

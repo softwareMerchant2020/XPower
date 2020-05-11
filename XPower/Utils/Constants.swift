@@ -8,6 +8,8 @@
 
 import Foundation
 /* URL */
+//https://xpowerwebapi20200430054944.azurewebsites.net/api/Point/GetUserProgress?Username=san
+
 let BASE_URL = "https://xpowerwebapi20200430054944.azurewebsites.net/api/"
 let USER_SERVICE_URL = "User/"
 let POINT_SERVICE_URL = "Point/"
@@ -30,9 +32,9 @@ let CHANGE_PASSWORD = "ChangePassword"
 let TOGGLE_TOUCH_ID = "ToggleTouchId"
 let GET_MESSAGES = "GetMessage"
 let SEND_MESSAGE = "SendMessage"
-let GET_USER_PROGRESS = "GetUserProgress"
-let GET_DAILY_POINTS = "GetDailyPoint"
-let GET_TOTAL_SCHOOL_POINTS = "TotalSchoolPoints"
+let GET_USER_PROGRESS = "GetUserProgress?Username="
+let GET_DAILY_POINTS = "GetDailyPoint?Username="
+let GET_TOTAL_SCHOOL_POINTS = "TotalSchoolPoints?Schoolname="
 
 
 let APP_NAME = "XPower"

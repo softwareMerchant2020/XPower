@@ -324,49 +324,53 @@ struct XpowerDataClient {
     }
     func getUserProgress(completionHandler: @escaping (ProgressPoints) ->()) {
         
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_USER_PROGRESS)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
+        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_USER_PROGRESS + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
-                    let progressPoints:ProgressPoints = self.modelProgressPoints(dic: jsonData)
-                    completionHandler(progressPoints)
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    do {
+                        let userProgress:UserProgress = try self.decoder.decode(UserProgress.self, from: data)
+                       let progressPoints =  self.modelProgressPoints(progress: userProgress)
+                        completionHandler(progressPoints)
+                    } catch  {
+                        print("error decoding dta:\(error)")
+                    }
                 }
             }
         }
     }
-    func modelProgressPoints(dic:Dictionary<String,Any>) -> ProgressPoints {
-        //var progress:ProgressPoints?
-        //var months:[Month] = [Month]()
+    func modelProgressPoints(progress:UserProgress) -> ProgressPoints {
+        var progressPoints:ProgressPoints?
+        var months:[Month] = [Month]()
         
-        //        let month1:Month = Month(name: "Jan", progress: dic["Jan"] as! Int)
-        //        months.append(month1 )
-        //
-        //        let month2:Month = Month(name: "Feb", progress: dic["Feb"] as! Int)
-        //        months.append(month2)
-        //        let month3:Month = Month(name: "Mar", progress: dic["Mar"] as! Int)
-        //        months.append(month3)
-        //        let month4:Month = Month(name: "Apr", progress: dic["Apr"] as! Int)
-        //        months.append(month4)
-        //        let month5:Month = Month(name: "May", progress: dic["May"] as! Int)
-        //       months.append(month5)
-        //        let month6:Month = Month(name: "Jun", progress: dic["Jun"] as! Int)
-        //        months.append(month6)
-        //        let month7:Month = Month(name: "Jul", progress: dic["Jul"] as! Int)
-        //       months.append(month7)
-        //        let month8:Month = Month(name: "Aug", progress: dic["Aug"] as! Int)
-        //        months.append(month8)
-        //        let month9:Month = Month(name: "Sep", progress: dic["Sep"] as! Int)
-        //        months.append(month9)
-        //        let month10:Month = Month(name: "Oct", progress: dic["Oct"] as! Int)
-        //        months.append(month10)
-        //        let month11:Month = Month(name: "Nov", progress: dic["Nov"] as! Int)
-        //       months.append(month11)
-        //        let month12:Month = Month(name: "Dec", progress: dic["Dec"] as! Int)
-        //        months.append(month12)
-        //        progress = ProgressPoints(allMonths: months)
-        return ProgressPoints()
+        let month1:Month = Month(name: "Jan", progress: progress.jan )
+                months.append(month1 )
+        
+        let month2:Month = Month(name: "Feb", progress: progress.feb )
+                months.append(month2)
+        let month3:Month = Month(name: "Mar", progress: progress.mar )
+                months.append(month3)
+        let month4:Month = Month(name: "Apr", progress: progress.apr)
+                months.append(month4)
+        let month5:Month = Month(name: "May", progress: progress.may)
+               months.append(month5)
+        let month6:Month = Month(name: "Jun", progress: progress.jun )
+                months.append(month6)
+        let month7:Month = Month(name: "Jul", progress: progress.jul)
+               months.append(month7)
+        let month8:Month = Month(name: "Aug", progress: progress.aug)
+                months.append(month8)
+        let month9:Month = Month(name: "Sep", progress: progress.sep)
+                months.append(month9)
+        let month10:Month = Month(name: "Oct", progress: progress.oct)
+                months.append(month10)
+        let month11:Month = Month(name: "Nov", progress: progress.nov)
+               months.append(month11)
+        let month12:Month = Month(name: "Dec", progress: progress.dec)
+                months.append(month12)
+        progressPoints = ProgressPoints(allMonths: months)
+        return progressPoints!
     }
     func getUserDailyPoints(completionHandler: @escaping (Int) -> ()) {
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_DAILY_POINTS + Utilities.currentUserName())!

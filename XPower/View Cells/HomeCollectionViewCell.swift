@@ -17,12 +17,11 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     let treeDic:Dictionary<Int,String> = [1:"Tree1", 2:"Tree2", 3:"Tree3", 4:"Tree4" , 5:"Tree5"]
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        super.awakeFromNib()        
     }
     func setCellData(monthPoint:Month) {
-        progressLabel.text = String(format: "%@ - %d%", monthPoint.name,monthPoint.progress * 20)
-        switch monthPoint.progress{
+        progressLabel.text = String(format: "%@ - %d", monthPoint.name, monthPoint.progress)
+        switch monthPoint.progress {
         case 0...20:
             treeImage.image = UIImage.init(named: treeDic[1]!)
         case 20...40:
