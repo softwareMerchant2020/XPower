@@ -48,40 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "goToLoginView(withUsername:password:)"
+            landmarkName = "signUpClicked(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0E8109EC-4159-41BF-89E3-A8CF82562DB9 - 79f34aeb71fbbe39"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "EarthPower.SignUpViewController.goToLoginView(withUsername: Swift.String, password: Swift.String) -&gt; ()"
-                  moduleName = "EarthPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sangeethagengaram/Xpower%20App%20Developement/XPower/XPower/View%20Controllers/SignUpViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "0E8109EC-4159-41BF-89E3-A8CF82562DB9 - cfe4ea785245fb8c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in EarthPower.SignUpViewController.goToLoginView(withUsername: Swift.String, password: Swift.String) -&gt; ()"
-                  moduleName = "EarthPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sangeethagengaram/Xpower%20App%20Developement/XPower/XPower/View%20Controllers/SignUpViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "147">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

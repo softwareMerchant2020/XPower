@@ -167,7 +167,9 @@ struct XpowerDataClient {
     }
     
     func getSchoolPoints(schoolName:String, completionHandler : @escaping (SchoolPoints) -> ()) {
-        guard let url = URL(string: BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + schoolName) else { return }
+        let str:String = BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + schoolName
+
+        guard let url = URL(string: str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
@@ -175,6 +177,7 @@ struct XpowerDataClient {
                     do {
                         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let schPoints:SchoolPoints = try self.decoder.decode(SchoolPoints.self, from: data)
+                        print(schPoints)
                         completionHandler(schPoints)
                     } catch  {
                         print("error decoding dta:\(error)")

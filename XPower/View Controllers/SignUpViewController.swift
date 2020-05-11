@@ -18,6 +18,7 @@ var client:XpowerDataClient?
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var schoolNameLabel: UILabel!
     var imagePicker:UIImagePickerController!
+    var schoolName:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +46,12 @@ var client:XpowerDataClient?
         let alertAction1 = UIAlertAction(title: SCHOOL_HAVERFORD, style: .default) { (alert: UIAlertAction!) -> Void in
             button.titleLabel?.text = SCHOOL_HAVERFORD
             self.schoolNameLabel.text = MAIL_HAVERFORD
+            self.schoolName = SCHOOL_HAVERFORD
             }
         let alertAction2 = UIAlertAction(title: SCHOOL_AGNES_IRWIN, style: .default) { (alert:UIAlertAction!)->Void in
             button.titleLabel?.text = SCHOOL_AGNES_IRWIN
             self.schoolNameLabel.text = MAIL_AGNES_IRWIN
+            self.schoolName =  SCHOOL_AGNES_IRWIN
         }
         actionMenu.addAction(alertAction1)
         actionMenu.addAction(alertAction2)
