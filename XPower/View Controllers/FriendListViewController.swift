@@ -14,7 +14,8 @@ class FriendListViewController: XpowerViewController {
     var friendRequests:FriendRequests?
     var isShowingList:Bool = true
     var loadingView:UIView = UIView()
-    
+    var noDataView:UIView = UIView()
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var friendListTableView: UITableView!
     @IBAction func listRequestCtrl(_ sender: UISegmentedControl) {
@@ -37,6 +38,8 @@ class FriendListViewController: XpowerViewController {
         backgroundImage = "IMG_0653.jpg"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestClicked(_:)))
         loadingView = Utilities.setLoadingBackgroundFor(viewController: self)
+        noDataView = Utilities.noDataView(viewController: self, emptyMsg: "No freind list found")
+
         loadFriendList()
         loadFriendRequestList()
     }
@@ -108,14 +111,26 @@ class FriendListViewController: XpowerViewController {
 extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count:Int = 0
+        
         if isShowingList {
-            return self.friendList?.results.count ?? 0
+            count = self.friendList?.results.count ?? 0
         }
         else
         {
-                return self.friendRequests?.results?.count ?? 0
+               count = self.friendRequests?.results?.count ?? 0
         }
-        
+        if (count==0) {
+            tableView.backgroundView = noDataView
+            tableView.separatorStyle = .none
+        }
+        else
+        {
+            tableView.backgroundView = nil
+            noDataView.removeFromSuperview()
+            tableView.separatorStyle = .singleLine
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

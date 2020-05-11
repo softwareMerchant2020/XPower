@@ -146,6 +146,6 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource,UITextFie
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
+//        textField.resignFirstResponder()
     }
 }

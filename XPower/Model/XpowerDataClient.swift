@@ -386,6 +386,7 @@ struct XpowerDataClient {
         }
     }
     func getTotalSchoolPoints(completionHandler: @escaping (Int) -> ()) {
+        print(Utilities.currentUserSchoolName())
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_TOTAL_SCHOOL_POINTS + Utilities.currentUserSchoolName())!
         
         rest.makePostRequest(toURL: url) { (results, success) in

@@ -50,7 +50,7 @@ class PointsViewController: UIViewController {
             self.definesPresentationContext = true
             self.pointsTableHeaderView.addSubview(self.searchController.searchBar)
             self.pointsTableView.tableHeaderView = self.pointsTableHeaderView
-//            self.pointsTableView.contentOffset = CGPoint(x: 0, y: self.pointsTableHeaderView.frame.height)
+            self.pointsTableView.contentOffset = CGPoint(x: 0, y: self.pointsTableHeaderView.frame.height)
             
         }
     }
