@@ -24,7 +24,7 @@ class XpowerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(systemName: "ellipsis"), style: .plain, target: self, action: #selector(menuButtonClicked(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(menuButtonClicked(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
     }
     

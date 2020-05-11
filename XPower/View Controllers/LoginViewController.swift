@@ -74,7 +74,6 @@ class LoginViewController: UIViewController {
             {
                 if (Utilities.writeUserInfoToFile(userInfo: currentUserInfo!))
                 {
-                    print(currentUserInfo)
                     DispatchQueue.main.async {
                     let alert = Utilities.getAlertControllerwith(title:MSG_SUCCESS , message: LOGIN_SUCCESS, alertActionTitle: ACTION_OK)
                     self.present(alert, animated: true, completion: nil)

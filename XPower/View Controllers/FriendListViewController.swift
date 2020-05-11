@@ -38,7 +38,7 @@ class FriendListViewController: XpowerViewController {
         backgroundImage = "IMG_0653.jpg"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestClicked(_:)))
         loadingView = Utilities.setLoadingBackgroundFor(viewController: self)
-        noDataView = Utilities.noDataView(viewController: self, emptyMsg: "No freind list found")
+        noDataView = Utilities.noDataView(viewController: self, emptyMsg: "No friend found")
 
         loadFriendList()
         loadFriendRequestList()

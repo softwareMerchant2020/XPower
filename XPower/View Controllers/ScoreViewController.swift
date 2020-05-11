@@ -29,8 +29,8 @@ class ScoreViewController: XpowerViewController {
                 self.client.getSchoolPoints(schoolName: "Agnes Irwin") { (agnesPts) in
                         self.schoolPoints?.append(agnesPts.totalpoints)
                     DispatchQueue.main.async {
-                    self.haverfordLabel.text = String(format: "Haverford :%d",haverfordPts.totalpoints )
-                    self.agnesLabel.text = String(format: "Agnes Irwin :%d", agnesPts.totalpoints)
+                    self.haverfordLabel.text = String(format: "Haverford : %d",haverfordPts.totalpoints )
+                    self.agnesLabel.text = String(format: "Agnes Irwin : %d", agnesPts.totalpoints)
                         self.loadingView.removeFromSuperview()
                        }
                 }

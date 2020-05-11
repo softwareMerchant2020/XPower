@@ -21,6 +21,7 @@ class PointsViewController: UIViewController {
     @IBOutlet weak var pointsTableHeaderView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Points"
         noDataView = Utilities.noDataView(viewController: self, emptyMsg: "Could not load deeds")
         loadData()
     }
@@ -101,7 +102,7 @@ extension PointsViewController:UITableViewDelegate,UITableViewDataSource,UISearc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PointsTableViewCell", for: indexPath) as! PointsTableViewCell
-        
+        cell.backgroundColor = .clear
         let object: Points
          if isFiltering {
            object = filteredDeeds[indexPath.row]

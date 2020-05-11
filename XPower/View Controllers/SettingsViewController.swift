@@ -16,8 +16,10 @@ class SettingsViewController: XpowerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
+        self.backgroundImage = "IMG_1390.jpg"
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
+        settingsTableView.backgroundColor = .clear
         settingsTableView.register(UINib(nibName: "TouchIdCell", bundle: .main), forCellReuseIdentifier: "TouchIdCell")
         settingsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
         settingsTableView.rowHeight = 60
@@ -48,14 +50,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, MF
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
+            cell.backgroundColor = .clear
             cell.textLabel?.text = SETTINGS_CHANGE_PASSWORD
             return cell
         case 1:
             let cell =  tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
+            cell.backgroundColor = .clear
             cell.textLabel?.text = SETTINGS_REPORT
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TouchIdCell", for: indexPath) as! TouchIdCell
+            cell.backgroundColor = .clear
             cell.viewController = self
             return cell
         
