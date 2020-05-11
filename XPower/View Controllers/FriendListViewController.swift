@@ -109,11 +109,11 @@ extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isShowingList {
-            return self.friendList?.friends.count ?? 0
+            return self.friendList?.results.count ?? 0
         }
         else
         {
-                return self.friendRequests?.requests?.count ?? 0
+                return self.friendRequests?.results?.count ?? 0
         }
         
     }
@@ -122,7 +122,7 @@ extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
         
         if isShowingList {
            let cell = tableView.dequeueReusableCell(withIdentifier: "FriendListCell", for: indexPath)
-            cell.textLabel?.text = friendList?.friends[indexPath.row].username
+            cell.textLabel?.text = friendList?.results[indexPath.row].username
             cell.accessoryType = .disclosureIndicator
             cell.isUserInteractionEnabled = true
             return cell
@@ -131,7 +131,7 @@ extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
         {
            let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as! FriendRequestCell
             cell.viewController = self
-            cell.setCellData(friendRequest: (friendRequests?.requests?[indexPath.row])!)
+            cell.setCellData(friendRequest: (friendRequests?.results?[indexPath.row])!)
             cell.selectionStyle = .none
             cell.isUserInteractionEnabled = true
             return cell
@@ -139,7 +139,7 @@ extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let receiverName = friendList?.friends[indexPath.row].username
+        let receiverName = friendList?.results[indexPath.row].username
         let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         chatVC.receiverName = receiverName
         self.navigationController?.pushViewController(chatVC, animated: true)

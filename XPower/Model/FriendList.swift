@@ -9,11 +9,11 @@
 import Foundation
 struct FriendList: Codable {
     let count: Int
-    let friends: [Friend]
+    let results: [Friend]
 
     enum CodingKeys: String, CodingKey {
         case count = "Count"
-        case friends = "Friends"
+        case results = "results"
     }
 }
 
@@ -27,11 +27,11 @@ struct Friend: Codable {
 }
 struct FriendRequests: Codable {
     let count: Int
-    let requests: [Request]?
+    let results: [Request]?
 
     enum CodingKeys: String, CodingKey {
         case count = "Count"
-        case requests = "Requests"
+        case results = "results"
     }
 }
 

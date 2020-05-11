@@ -184,8 +184,7 @@ struct XpowerDataClient {
         }
     }
     func getFriendList(completionHandler : @escaping (FriendList) -> ()) {
-        let url = URL(string: BASE_URL + USER_SERVICE_URL + GET_FRIEND_LIST)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
+        let url = URL(string: BASE_URL + USER_SERVICE_URL + GET_FRIEND_LIST + "?Username=" + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
             if let data = results.data {
                 do {
@@ -199,8 +198,7 @@ struct XpowerDataClient {
         }
     }
     func getFriendRequestList(completionHandler :  @escaping (FriendRequests) -> ()) {
-        let url = URL(string: BASE_URL + USER_SERVICE_URL + GET_FRIEND_REQUEST_LIST)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
+        let url = URL(string: BASE_URL + USER_SERVICE_URL + GET_FRIEND_REQUEST_LIST + "?Username=" + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url, completionHandler: { (results, success) in
             if success
             {
