@@ -35,10 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }        
     }
-    
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        print("sceneWillEnterForeground: \(window?.rootViewController)")
-    }
 }
 
 private extension UIStoryboard {

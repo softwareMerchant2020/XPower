@@ -21,6 +21,7 @@ struct XpowerDataClient {
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
                 if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
                         jsonData = try self.decoder.decode(UserInfo.self, from: data)
                         completionHandler(jsonData, nil)
@@ -47,8 +48,9 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let jsonData = try! self.decoder.decode(ResultData.self, from: data)
-                    completionHandler(jsonData.result)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -60,8 +62,9 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let jsonData = try! self.decoder.decode(ResultData.self, from: data)
-                    completionHandler(jsonData.result)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -73,6 +76,7 @@ struct XpowerDataClient {
             if results.response?.httpStatusCode == 200 {
                 if let data = results.data {
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         pointsData = try self.decoder.decode(Array<Points>.self, from: data)
                         completionHandler(pointsData!)
                     } catch  {
@@ -92,6 +96,7 @@ struct XpowerDataClient {
             {
                 if let data = results.data {
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         favTasks = try self.decoder.decode(TasksList.self, from: data)
                         completionHandler(favTasks!)
                         
@@ -115,8 +120,9 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let jsonData = try! self.decoder.decode(ResultData.self, from: data)
-                    completionHandler(jsonData.result)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -131,8 +137,9 @@ struct XpowerDataClient {
             if success
             {
                 if let data = results.data {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let jsonData = try! self.decoder.decode(ResultData.self, from: data)
-                    completionHandler(jsonData.result)
+                    completionHandler(jsonData.Result)
                 }
             }
         })
@@ -147,6 +154,7 @@ struct XpowerDataClient {
             {
                 if let data = results.data {
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         recentDeeds = try self.decoder.decode([RecentDeed].self, from: data)
                         completionHandler(recentDeeds!)
                         
@@ -159,12 +167,13 @@ struct XpowerDataClient {
     }
     
     func getSchoolPoints(schoolName:String, completionHandler : @escaping (SchoolPoints) -> ()) {
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + schoolName)!
+        guard let url = URL(string: BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + schoolName) else { return }
         rest.makePostRequest(toURL: url) { (results, success) in
             if success
             {
                 if let data = results.data {
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let schPoints:SchoolPoints = try self.decoder.decode(SchoolPoints.self, from: data)
                         completionHandler(schPoints)
                     } catch  {
@@ -180,6 +189,7 @@ struct XpowerDataClient {
         rest.makePostRequest(toURL: url) { (results, success) in
             if let data = results.data {
                 do {
+                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let friendList:FriendList = try self.decoder.decode(FriendList.self, from: data)
                     completionHandler(friendList)
                 } catch  {
@@ -196,6 +206,7 @@ struct XpowerDataClient {
             {
                 if let data = results.data {
                     do {
+                        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let friendReqs:FriendRequests = try self.decoder.decode(FriendRequests.self, from: data)
                         completionHandler(friendReqs)
                     } catch  {
@@ -213,9 +224,10 @@ struct XpowerDataClient {
         
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
+                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                    completionHandler(jsonData["Result"] ?? "")
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -227,9 +239,10 @@ struct XpowerDataClient {
         
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
+                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                    completionHandler(jsonData["Result"] ?? "")
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -242,9 +255,10 @@ struct XpowerDataClient {
         rest.httpBodyParameters.add(value: newPassword, forKey: PASSWORD)
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
+                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                    completionHandler(jsonData["Result"] ?? "")
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -256,9 +270,10 @@ struct XpowerDataClient {
         
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
+                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                    completionHandler(jsonData["Result"] ?? "")
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.Result)
                 }
             }
         }
@@ -299,9 +314,10 @@ struct XpowerDataClient {
         
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
+                self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let data = results.data {
-                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,String>
-                    completionHandler(jsonData["Result"] ?? "")
+                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
+                    completionHandler(jsonData.Result)
                 }
             }
         }

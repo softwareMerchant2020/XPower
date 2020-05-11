@@ -26,6 +26,6 @@ struct loginFailed: Codable {
     let reason:String
 }
 struct ResultData: Codable{
-    let result:String
+    let Result:String
 }
 
