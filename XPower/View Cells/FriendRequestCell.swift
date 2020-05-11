@@ -10,7 +10,7 @@ import UIKit
 
 class FriendRequestCell: UITableViewCell {
     let client:XpowerDataClient = XpowerDataClient()
-    weak var viewController:XpowerViewController?
+    weak var viewController:FriendListViewController?
     
     @IBOutlet weak var friendName: UILabel!
     override func awakeFromNib() {
@@ -32,7 +32,9 @@ class FriendRequestCell: UITableViewCell {
             let alert = Utilities.getAlertControllerwith(title: APP_NAME, message: message)
             self.viewController?.present(alert, animated: true, completion: {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_ ) in
-                    self.viewController?.dismiss(animated: true, completion: nil)
+                    self.viewController?.dismiss(animated: true, completion:{
+                        self.viewController?.loadFriendRequestList()
+                    })
                 }
             })
             }

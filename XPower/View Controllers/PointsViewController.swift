@@ -16,7 +16,7 @@ class PointsViewController: UIViewController {
     var noDataView:UIView = UIView()
     var loadingView:UIView = UIView()
     @IBOutlet weak var pointsTableView: UITableView!
-    
+    var selectedSegment: Int = 0
     @IBOutlet weak var deedsSegmentButton: UISegmentedControl!
     @IBOutlet weak var pointsTableHeaderView: UIView!
     override func viewDidLoad() {
@@ -56,6 +56,16 @@ class PointsViewController: UIViewController {
     }
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
+    }
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            selectedSegment = 0
+        }
+        if sender.selectedSegmentIndex == 1 {
+            selectedSegment = 1
+        }
+        
+        
     }
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty

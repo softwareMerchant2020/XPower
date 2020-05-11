@@ -216,8 +216,8 @@ struct XpowerDataClient {
     }
     func respondToFriendRequest(receiverName:String, status:Int, completionHandler :  @escaping (String)->()) {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + RESPOND_TO_REQUEST)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
-        rest.httpBodyParameters.add(value: receiverName, forKey: "Reciever")
+        rest.httpBodyParameters.add(value: receiverName, forKey: "Sender")
+        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Reciever")
         rest.httpBodyParameters.add(value: status, forKey: "Status")
         
         rest.makePostRequest(toURL: url) { (results, success) in
