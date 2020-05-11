@@ -14,8 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let sender = PushNotificationSender()
-        sender.sendPushNotification(to: "sangitha", title: "New Message from Sangitha", body: "Message Body")
         return true
     }
 
@@ -44,6 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let chatVC = storyBoard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
             chatVC.receiverName = username
             containerVC.navigationController?.pushViewController(chatVC, animated: true)
+            
+        }
+        if ((NotificationAlert["title"]?.contains(NOTIFICATION_TITLE_REQUEST))!) {
+            let containerVC = UIApplication.shared.windows.first?.rootViewController as! ContainerViewController
+            containerVC.toggleLeftPanel()
+            containerVC.didSelectMenu(VC: Menu(menuName: .friends, controllerName: "FriendListViewController"))
             
         }
     }

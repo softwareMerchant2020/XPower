@@ -119,8 +119,6 @@ class RestManager {
         }
     }
     
-    
-    
     private func prepareRequest(withURL url: URL?, httpBody: Data?, httpMethod: HttpMethod) -> URLRequest? {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)

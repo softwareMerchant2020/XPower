@@ -64,6 +64,12 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             containerVC.centerNavigationController?.pushViewController(chatVC, animated: true)
             
         }
+        if ((NotificationAlert["title"]?.contains(NOTIFICATION_TITLE_REQUEST))!) {
+            let containerVC = UIApplication.shared.windows.first?.rootViewController as! ContainerViewController
+            containerVC.toggleLeftPanel()
+            containerVC.didSelectMenu(VC: Menu(menuName: .friends, controllerName: "FriendListViewController"))
+            
+        }
         completionHandler()
     }
 }

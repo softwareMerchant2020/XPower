@@ -68,7 +68,7 @@ class FriendListViewController: XpowerViewController {
     }
     func sendNewRequestNotification(receiverName:String) {
         let sender = PushNotificationSender()
-        sender.sendPushNotification(to: receiverName, title: String(format:"New Request from %@", Utilities.currentUserName()), body: "")
+        sender.sendPushNotification(to: receiverName, title: String(format:"New Friend Request %@", Utilities.currentUserName()), body: "")
     }
     func showAlertWithMessage(message:String) {
         DispatchQueue.main.async {
