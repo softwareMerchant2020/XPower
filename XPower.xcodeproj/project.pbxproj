@@ -127,7 +127,7 @@
 		EFA88D592427058E0042993B /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		EFA88D5A2427058E0042993B /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		EFD4F1A4242BC44C009CFFC0 /* MockTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTask.swift; sourceTree = "<group>"; };
-		EFEDE0AF2415E49B004A51DB /* EarthPower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarthPower.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEDE0AF2415E49B004A51DB /* XPower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEDE0B22415E49B004A51DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEDE0B42415E49B004A51DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EFEDE0B62415E49B004A51DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		EFEDE0B02415E49B004A51DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EFEDE0AF2415E49B004A51DB /* EarthPower.app */,
+				EFEDE0AF2415E49B004A51DB /* XPower.app */,
 				EF5932BA242392C900A7CE5B /* XPowerTests.xctest */,
 			);
 			name = Products;
@@ -341,7 +341,7 @@
 			);
 			name = XPower;
 			productName = XPower;
-			productReference = EFEDE0AF2415E49B004A51DB /* EarthPower.app */;
+			productReference = EFEDE0AF2415E49B004A51DB /* XPower.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -726,8 +726,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softwaremerchant.EarthPower;
-				PRODUCT_NAME = EarthPower;
+				MARKETING_VERSION = 5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
+				PRODUCT_NAME = XPower;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -747,8 +748,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softwaremerchant.EarthPower;
-				PRODUCT_NAME = EarthPower;
+				MARKETING_VERSION = 5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
+				PRODUCT_NAME = XPower;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
