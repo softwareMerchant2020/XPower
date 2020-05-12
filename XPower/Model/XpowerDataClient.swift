@@ -236,8 +236,7 @@ struct XpowerDataClient {
     }
     func changePasswordWith(newPassword:String, completionHandler: @escaping (String)->()) {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + CHANGE_PASSWORD)!
-        
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
+        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: USER_NAME)
         rest.httpBodyParameters.add(value: newPassword, forKey: PASSWORD)
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {
@@ -251,7 +250,7 @@ struct XpowerDataClient {
     }
     func toggleTouchId(touchId:Bool, completionHandler: @escaping (String) -> ())  {
         let url = URL(string: BASE_URL + USER_SERVICE_URL + TOGGLE_TOUCH_ID)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Sender")
+        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: USER_NAME)
         rest.httpBodyParameters.add(value: touchId, forKey: TOUCH_ID_ON)
         
         rest.makePostRequest(toURL: url) { (results, success) in

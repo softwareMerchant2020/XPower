@@ -33,7 +33,9 @@ class ChangePwdViewController: UIViewController {
             let alert = Utilities.getAlertControllerwith(title: APP_NAME, message: message)
             self.present(alert, animated: true, completion: {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_ ) in
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
                 }
             })
             }
