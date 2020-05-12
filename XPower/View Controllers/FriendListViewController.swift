@@ -148,16 +148,18 @@ extension FriendListViewController:UITableViewDelegate,UITableViewDataSource
             cell.viewController = self
             cell.setCellData(friendRequest: (friendRequests?.results?[indexPath.row])!)
             cell.selectionStyle = .none
-            cell.isUserInteractionEnabled = true
             return cell
         }
        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let receiverName = friendList?.results[indexPath.row].username
-        let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        chatVC.receiverName = receiverName
-        self.navigationController?.pushViewController(chatVC, animated: true)
+        if isShowingList {
+            let receiverName = friendList?.results[indexPath.row].username
+            let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+            chatVC.receiverName = receiverName
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        }
         
     }
     
