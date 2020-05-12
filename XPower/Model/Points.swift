@@ -32,7 +32,7 @@ struct TasksList: Codable {
 
 // MARK: - TasksList
 struct TaskList: Codable {
-    let Task: String
+    var Task: String?
 
     enum CodingKeys: String, CodingKey {
         case Task = "Task"

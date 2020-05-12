@@ -13,6 +13,7 @@ class PointsViewController: UIViewController {
     var pointsData:[Points]?
     let searchController = UISearchController(searchResultsController: nil)
     var filteredDeeds: [Points] = []
+    var favTaskList:TasksList?
     var noDataView:UIView = UIView()
     var loadingView:UIView = UIView()
     @IBOutlet weak var pointsTableView: UITableView!
@@ -30,7 +31,10 @@ class PointsViewController: UIViewController {
         client = XpowerDataClient()
           client?.getDeedsAndPoints(completionHandler: { pointsDat in
               self.pointsData = pointsDat
-              self.loadTableview()
+              self.client?.getFavouriteDeeds(completionHandler: { (taskList) in
+                  self.favTaskList = taskList
+                  self.loadTableview()
+              })
           })
         
     }
@@ -57,16 +61,6 @@ class PointsViewController: UIViewController {
     }
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
-    }
-    @IBAction func indexChanged(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            selectedSegment = 0
-        }
-        if sender.selectedSegmentIndex == 1 {
-            selectedSegment = 1
-        }
-        
-        
     }
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
@@ -103,13 +97,17 @@ extension PointsViewController:UITableViewDelegate,UITableViewDataSource,UISearc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PointsTableViewCell", for: indexPath) as! PointsTableViewCell
         cell.backgroundColor = .clear
+        let favtask = self.favTaskList?.tasksList?.filter({$0.Task == self.pointsData?[indexPath.row].Description}).first
+        let boolFav = favtask != nil
         let object: Points
          if isFiltering {
            object = filteredDeeds[indexPath.row]
          } else {
             object = (pointsData?[indexPath.row])!
         }
-        cell.setCellData(points: object)
+        
+        cell.setCellData(points: object, isFavorite:boolFav )
+        
         cell.viewController = self
         return cell
     }

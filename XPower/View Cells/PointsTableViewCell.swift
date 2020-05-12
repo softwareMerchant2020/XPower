@@ -22,9 +22,9 @@ class PointsTableViewCell: UITableViewCell {
        }
 
     @IBAction func starButtonClicked(_ sender: Any) {
-        if starButton.image(for: .normal) == UIImage.init(named: "favorites.png") {
+        if starButton.backgroundImage(for: .normal) == UIImage.init(named: "favorites.png") {
             
-            starButton.setBackgroundImage(UIImage.init(named: "noFavorite.png"), for: .normal)
+            starButton.setBackgroundImage(UIImage.init(named: "NoFavorite.png"), for: .normal)
             client.setFavoutiteTask(taskDescription: descriptionLabel.text!, isFavorite: false) { (result) in
                 self.showAlertWithMessage(message: result)
             }
@@ -45,8 +45,13 @@ class PointsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func setCellData(points:Points) {
+    func setCellData(points:Points, isFavorite:Bool) {
         descriptionLabel.text = points.Description
+        if isFavorite{
+           starButton.setBackgroundImage(UIImage.init(named: "favorites.png"), for: .normal)
+        } else {
+            starButton.setBackgroundImage(UIImage.init(named: "NoFavorite.png"), for: .normal)
+        }
     }
     func setFavouriteTask(task:TaskList) {
         descriptionLabel.text = task.Task

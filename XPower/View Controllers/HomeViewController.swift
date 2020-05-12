@@ -77,7 +77,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
       let availableWidth = homeCollectionView.bounds.width - paddingSpace
       let widthPerItem = availableWidth / itemsPerRow
         homeCollectionView.layoutIfNeeded()
-      return CGSize(width: widthPerItem-15, height: widthPerItem)
+      return CGSize(width: widthPerItem-15, height: widthPerItem+15)
     }
     
     //3
