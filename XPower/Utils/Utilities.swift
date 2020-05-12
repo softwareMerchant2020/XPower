@@ -65,7 +65,7 @@ class Utilities {
             dictionary[PASSWORD] = userInfo.password
             dictionary[EMAIL] = userInfo.email
             dictionary[SCHOOL_NAME] = userInfo.schoolName
-
+print(userInfo)
             let defaults = UserDefaults.standard
             defaults.set(userInfo.username, forKey: USER_NAME)
             defaults.set(userInfo.schoolName, forKey: SCHOOL_NAME)

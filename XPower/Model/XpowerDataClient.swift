@@ -14,7 +14,7 @@ let rest = RestManager()
 struct XpowerDataClient {
 
     let decoder = JSONDecoder()
-    func loginWithUsernameAndPassword(paramterDic:Dictionary<String,Any>, completionHandler: @escaping (UserInfo? , loginFailed?)->()) {
+    func loginWithUsernameAndPassword(paramterDic:Dictionary<String,Any>, completionHandler: @escaping (UserInfo? , ResultData?)->()) {
         var jsonData:UserInfo?
         guard let url = URL(string: BASE_URL + USER_SERVICE_URL + AUTHENTICATION_PATH) else { return }
         rest.httpBodyParameters.addAllBodyParameters(dic: paramterDic)
@@ -27,7 +27,7 @@ struct XpowerDataClient {
                         completionHandler(jsonData, nil)
                     } catch  {
                         do {
-                            let loginFailData = try self.decoder.decode(loginFailed.self, from: data)
+                            let loginFailData = try self.decoder.decode(ResultData.self, from: data)
                             completionHandler(nil,loginFailData)
                         } catch  {
                             print("error decoding dta:\(error)")
@@ -177,7 +177,6 @@ struct XpowerDataClient {
                     do {
                         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
                         let schPoints:SchoolPoints = try self.decoder.decode(SchoolPoints.self, from: data)
-                        print(schPoints)
                         completionHandler(schPoints)
                     } catch  {
                         print("error decoding dta:\(error)")
@@ -386,8 +385,9 @@ struct XpowerDataClient {
         }
     }
     func getTotalSchoolPoints(completionHandler: @escaping (Int) -> ()) {
-        print(Utilities.currentUserSchoolName())
-        let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_TOTAL_SCHOOL_POINTS + Utilities.currentUserSchoolName())!
+        let str:String = BASE_URL + POINT_SERVICE_URL + SCHOOL_POINTS + "?Schoolname=" + Utilities.currentUserSchoolName()
+
+        guard let url = URL(string: str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
         
         rest.makePostRequest(toURL: url) { (results, success) in
             if success {

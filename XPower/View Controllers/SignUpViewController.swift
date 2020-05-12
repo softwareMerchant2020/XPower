@@ -144,7 +144,6 @@ extension SignUpViewController:UINavigationControllerDelegate,UIImagePickerContr
            }
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print(picker)
         dismiss(animated: true, completion: nil)
 
     }

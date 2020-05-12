@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
             }
             else {
                 DispatchQueue.main.async {
-                    let alert = Utilities.getAlertControllerwith(title: loginFailData!.result, message: loginFailData!.reason, alertActionTitle: "Ok")
+                    let alert = Utilities.getAlertControllerwith(title: APP_NAME, message: loginFailData!.Result, alertActionTitle: "Ok")
                 self.present(alert, animated: true, completion:nil)
                 }
             }
