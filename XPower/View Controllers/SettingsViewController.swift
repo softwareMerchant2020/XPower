@@ -70,10 +70,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource, MF
         switch indexPath.row {
         case 0:
             let changePwdVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangePwdViewController") as! ChangePwdViewController
+            tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(changePwdVC, animated: true)
         case 1:
             sendEmail()
-            
+            tableView.deselectRow(at: indexPath, animated: true)
+
         default:
             tableView.deselectRow(at: indexPath, animated: true)
         }

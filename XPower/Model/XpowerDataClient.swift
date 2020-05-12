@@ -55,20 +55,6 @@ struct XpowerDataClient {
             }
         }
     }
-    func resetPasswordforMailId(mailId:String, completionHandler: @escaping (String) ->())  {
-        let url = URL(string: BASE_URL + USER_SERVICE_URL + RESET_PASSWORD)!
-        rest.httpBodyParameters.add(value: Utilities.currentUserName(), forKey: "Username")
-        rest.makePostRequest(toURL: url) { (results, success) in
-            if success
-            {
-                if let data = results.data {
-                    self.decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let jsonData = try! self.decoder.decode(ResultData.self, from: data)
-                    completionHandler(jsonData.Result)
-                }
-            }
-        }
-    }
     func getDeedsAndPoints(completionHandler: @escaping ([Points]) -> ()) {
         var pointsData:[Points]?
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + POINTS_TABLE)!
@@ -322,7 +308,7 @@ struct XpowerDataClient {
             }
         }
     }
-    func getUserProgress(completionHandler: @escaping (ProgressPoints) ->()) {
+    func getUserProgress(completionHandler: @escaping (ProgressPoints, Int) ->()) {
         
         let url = URL(string: BASE_URL + POINT_SERVICE_URL + GET_USER_PROGRESS + Utilities.currentUserName())!
         rest.makePostRequest(toURL: url) { (results, success) in
@@ -332,7 +318,7 @@ struct XpowerDataClient {
                     do {
                         let userProgress:UserProgress = try self.decoder.decode(UserProgress.self, from: data)
                        let progressPoints =  self.modelProgressPoints(progress: userProgress)
-                        completionHandler(progressPoints)
+                        completionHandler(progressPoints, userProgress.maxPoint)
                     } catch  {
                         print("error decoding dta:\(error)")
                     }

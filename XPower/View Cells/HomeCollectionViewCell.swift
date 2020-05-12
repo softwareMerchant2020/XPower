@@ -19,9 +19,12 @@ class HomeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()        
     }
-    func setCellData(monthPoint:Month) {
-        progressLabel.text = String(format: "%@ - %d", monthPoint.name, monthPoint.progress)
-        switch monthPoint.progress {
+    func setCellData(monthPoint:Month, maxPoint:Int) {
+        let pointIn = (Double(monthPoint.progress) / Double(maxPoint))
+        let score = pointIn * 100
+        progressLabel.text = String(format: "%@ - %d%%", monthPoint.name, Int(score))
+
+        switch score {
         case 0...20:
             treeImage.image = UIImage.init(named: treeDic[1]!)
         case 20...40:

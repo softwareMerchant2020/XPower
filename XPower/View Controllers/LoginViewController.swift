@@ -30,26 +30,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         super.viewWillAppear(animated)
     }
-    @IBAction func forgotPasswordClicked(_ sender: Any) {
-        
-        let alert = UIAlertController(title: FORGET_PASSWORD, message: nil, preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = EMAIL_PLACEHOLDER
-        }
-
-        let submitAction = UIAlertAction(title: ACTION_SUBMIT, style: .default) { [unowned alert] _ in
-            let emailField = alert.textFields![0]
-            self.client?.resetPasswordforMailId(mailId: emailField.text!, completionHandler: { (result) in
-
-            })
-        }
-
-        alert.addAction(submitAction)
-        present(alert, animated: true)
-        
-       }
        @IBAction func signUpButtonClicked(_ sender: Any) {
-//        self.performSegue(withIdentifier: "signupclicked", sender: self)
         let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
         self.navigationController?.pushViewController(signUpVC, animated: true)
        }

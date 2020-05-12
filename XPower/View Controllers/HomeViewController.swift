@@ -18,6 +18,8 @@ class HomeViewController: XpowerViewController {
     @IBOutlet weak var totalPointsLabel: UILabel!
     @IBOutlet weak var dailyPointsLabel: UILabel!
     var loadingView:UIView = UIView()
+    var maxPoint:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Home"
@@ -27,8 +29,9 @@ class HomeViewController: XpowerViewController {
     }
     func loadData() {
        loadingView = Utilities.setLoadingBackgroundFor(viewController: self)
-        client.getUserProgress { (points) in
+        client.getUserProgress { (points, maxPoint) in
             self.progresspoints = points
+            self.maxPoint = maxPoint
             self.loadCollectionView()
         }
         client.getUserDailyPoints { (dailyPts) in
@@ -63,7 +66,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView
           .dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeCollectionViewCell
-        cell.setCellData(monthPoint: (progresspoints?.allMonths![indexPath.row])!)
+        cell.setCellData(monthPoint: (progresspoints?.allMonths![indexPath.row])!, maxPoint: self.maxPoint)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView,
