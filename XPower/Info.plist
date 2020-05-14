@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow acces to Photos?</string>
+	<string>Allow access to Photos for uploading photo to the profile.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -71,10 +71,9 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>

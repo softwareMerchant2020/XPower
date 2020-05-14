@@ -123,7 +123,8 @@ var client:XpowerDataClient?
                 }
             }
         default:
-            print("Error: no access to photo album.")
+        let alert = Utilities.getAlertControllerwith(title: "Error", message: "Error: no access to photo album.")
+        self.present(alert, animated: true)
         }
     }
     func saveImage(userImage:UIImage)  {

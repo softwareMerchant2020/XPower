@@ -726,7 +726,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = XPower;
 				SWIFT_VERSION = 5.0;
@@ -748,7 +748,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 5.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SoftwareMerchant.Xpower;
 				PRODUCT_NAME = XPower;
 				PROVISIONING_PROFILE_SPECIFIER = "";

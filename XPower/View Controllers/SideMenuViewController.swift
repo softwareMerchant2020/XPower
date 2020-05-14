@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Photos
+
 struct Menu {
     let menuName:menu
     let controllerName:String
     
 }
+
 class SideMenuViewController: UIViewController {
     @IBOutlet weak var sideMenuTableView: UITableView!
     var delegate: SidePanelViewControllerDelegate?
@@ -47,12 +50,34 @@ class SideMenuViewController: UIViewController {
         userName.text = Utilities.currentUserName()
 
     }
-    
+    func checkPermission(hanler: @escaping () -> Void) {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            // Access is already granted by user
+            hanler()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { (newStatus) in
+                if newStatus == PHAuthorizationStatus.authorized {
+                    // Access is granted by user
+                    hanler()
+                }
+            }
+        default:
+            let alert = Utilities.getAlertControllerwith(title: "Error", message: "Error: no access to photo album.")
+            self.present(alert, animated: true)
+        }
+    }
     @objc func imageTapped() {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
-        
-        self.present(imagePicker, animated: true, completion: nil)
+        checkPermission {
+            DispatchQueue.main.async {
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.modalPresentationStyle = UIModalPresentationStyle.currentContext
+                
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            
+        }
     }
     
   func saveImage(userImage:UIImage)  {
